@@ -61,7 +61,7 @@ var removeCmd = &cobra.Command{
 
 		// 删除选中的任务
 		if deleteErr := storage.DeleteNote(selectedNote.ID); deleteErr != nil {
-			return err
+			return deleteErr
 		}
 
 		logger.Success(i18n.GetMessage(config.GetConfig().Language, "task_deleted", selectedNote.Content))

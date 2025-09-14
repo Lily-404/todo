@@ -33,7 +33,13 @@ func AddNote(note Note) error {
 		return err
 	}
 
-	note.ID = len(notes) + 1
+	maxID := 0
+	for _, n := range notes {
+		if n.ID > maxID {
+			maxID = n.ID
+		}
+	}
+	note.ID = maxID + 1
 	notes = append(notes, note)
 
 	return saveNotes(notes)
